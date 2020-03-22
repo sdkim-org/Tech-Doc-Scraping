@@ -73,6 +73,7 @@ const main = async (event, context) => {
     console.log({e})
     browser && await browser.close()
     return failure({e});
+  }
 }
 
 module.exports = { main }
