@@ -2,6 +2,8 @@ const puppeteer = require('puppeteer-core');
 const chromium = require('chrome-aws-lambda');
 const AWS = require('aws-sdk');
 
+const { success, failure } = require("./libs/response-lib")
+
 const sampleUrls = {
   aws : "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/concepts.html",
   azure : "https://docs.microsoft.com/en-us/azure/virtual-machines/linux/",
@@ -65,12 +67,12 @@ const main = async (event, context) => {
       ContentType: 'text/plain'
     }
     await s3.putObject(s3Params).promise();
-    
+    await browser.close()
+    return success(title)
   } catch (e) {
     console.log({e})
-  } finally {
     browser && await browser.close()
-  }
+    return failure({e});
 }
 
 module.exports = { main }
