@@ -1,0 +1,21 @@
+service: sdk-org-sls-cloud-doc
+   
+provider:
+  name: aws
+  runtime: nodejs10.x
+  stage: dev
+  region: ap-northeast-2
+  environment:
+    CUSTOM_CHROME: true
+  
+  
+functions:
+  scrapping:
+    role: arn:aws:iam::352485268054:role/LambdaExcuteS3Role
+    timeout: 90
+    memorySize: 1024
+    handler: handler.main
+    events:
+      - http:
+          path: docs
+          method: post

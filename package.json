@@ -1,0 +1,21 @@
+{
+  "name": "tech-doc-scraping",
+  "version": "1.0.0",
+  "description": "",
+  "main": "handler.js",
+  "scripts": {
+    "deploy": "npx serverless deploy --aws-profile sdk-org",
+    "update": "npx serverless deploy function -f scrapping --aws-profile sdk-org"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "aws-sdk": "2.643.0",
+    "chrome-aws-lambda": "2.1.1",
+    "puppeteer-core": "2.1.1"
+  },
+  "devDependencies": {
+    "puppeteer": "2.1.1"
+  }
+}
